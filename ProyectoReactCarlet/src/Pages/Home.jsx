@@ -5,8 +5,8 @@ function Home() {
     return (
         <div>
             <NavBar/>
-            <h1>Bienvenido a la App</h1>
-            <p>Listo para llevar Registro de tus Tareas </p>
+            <h1>Bienvenido</h1>
+            <p>Registro de tus Tareas </p>
         </div>
         
     )

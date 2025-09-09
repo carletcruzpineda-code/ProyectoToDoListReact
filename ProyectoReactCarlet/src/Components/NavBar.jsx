@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function NavBar() {
   return (
         <div>
-            <h2> To Do App</h2>
+            <h2> To Do List React</h2>
                 <nav>
                     <Link to="/">Inicio</Link> | 
                     <Link to="/Todo"> Tareas</Link>

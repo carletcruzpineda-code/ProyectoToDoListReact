@@ -1,34 +1,83 @@
-import React, {useState,useEffect }from 'react'
-
+import React, { useState, useEffect } from 'react'
+import { getT, agregarT, eliminarT, actualizarT } from '../Services/Services'
 
 function TaskList() {
-    return (
-        <div>
-        <div>
-            <input type="text" placeholder="Ingresar tarea" />
-            <button>Agregar</button>
-        </div>
+  const [tareas, setTareas] = useState([])
+  const [nuevaT, setNuevaT] = useState('')
 
-        <div>
-            <p>Tareas Completadas</p>
-            <div>0</div>  
-        </div>
+  useEffect(() => {
+    cargarT()
+  }, [])
 
-        <div>
-            <div>
-            <input type="checkbox" />
-            <span>Ejemplo de tarea 1</span>
-            <button>Eliminar</button>
-            </div>
-
-            <div>
-            <input type="checkbox" />
-            <span>Ejemplo de tarea 2</span>
-            <button>Eliminar</button>
-            </div>
-        </div>
-        </div>
-    )
+  const cargarT = async () => {
+    try {
+      const lista = await getT()
+      setTareas(lista)
+    } catch (error) {
+      console.error("Error al cargar tareas:", error)
     }
+  }
 
-    export default TaskList
+  const agregarNuevaT = async () => {
+    if (!nuevaT.trim()) return
+    try {
+      await agregarT({ titulo: nuevaT, completada: false })
+      setNuevaT('')
+      cargarT()
+    } catch (error) {
+      console.error("Error al agregar tarea:", error)
+    }
+  }
+
+  const borrarT = async (id) => {
+    try {
+      await eliminarT(id)
+      cargarT()
+    } catch (error) {
+      console.error("Error al eliminar tarea:", error)
+    }
+  }
+
+  const Complete = async (tarea) => {
+    try {
+      await actualizarT({ ...tarea, completada: !tarea.completada })
+      cargarTareas()
+    } catch (error) {
+      console.error("Error al actualizar tarea:", error)
+    }
+  }
+
+  return (
+    <div>
+      <div>
+        <input
+          type="text"
+          placeholder="Ingresar tarea"
+          value={nuevaT}
+          onChange={e => setNuevaT(e.target.value)}
+        />
+        <button onClick={agregarNuevaT}>Agregar</button>
+      </div>
+
+      <div>
+        <p>Tareas Completadas: {tareas.filter(t => t.completada).length}</p>
+      </div>
+
+      <div>
+        {tareas.map(t => (
+          <div key={t.id}>
+            <input
+              type="checkbox"
+              checked={t.completada}
+              onChange={() => Complete(t)}
+            />
+            <span>{t.titulo}</span>
+            <button onClick={() => borrarT(t.id)}>Eliminar</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default TaskList

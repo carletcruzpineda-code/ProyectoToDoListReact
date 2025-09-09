@@ -1,11 +1,11 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Comic Sans MS', 'Fredoka One', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.7;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #121212;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,56 +13,81 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  transition: background-color 0.4s ease;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  font-weight: 700;
+  color: #4fc3f7;
+  text-decoration: none;
+  text-shadow: 0 0 8px #4fc3f7;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+  color: #81d4fa;
+  text-shadow: 0 0 15px #81d4fa;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  padding: 0.85em 1.75em;
+  font-size: 1.1em;
+  font-weight: 700;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #1e1e1e;
+  color: #d1d1d1;
   cursor: pointer;
-  transition: border-color 0.25s;
+  box-shadow: 0 0 10px #2196f3;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border-color: #ffb300;
+  background-color: #272727;
+  box-shadow: 0 0 20px #ffb300;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #222;
+    background-color: #fefefe;
   }
+
+  body {
+    background-color: #fefefe;
+  }
+
+  a {
+    color: #0288d1;
+    text-shadow: none;
+  }
+
   a:hover {
-    color: #747bff;
+    color: #00796b;
+    text-shadow: 0 0 8px #00796b;
   }
+
   button {
-    background-color: #f9f9f9;
+    background-color: #e0f7fa;
+    color: #004d40;
+    box-shadow: 0 0 10px #004d40;
+    border-color: transparent;
+  }
+
+  button:hover {
+    border-color: #f57c00;
+    background-color: #b2dfdb;
+    box-shadow: 0 0 20px #f57c00;
   }
 }
