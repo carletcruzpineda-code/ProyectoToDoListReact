@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function NavBar() {
   return (
-        <div>
+        <div className='move'>
             <h2> To Do List React</h2>
                 <nav>
                     <Link to="/">Inicio</Link> | 

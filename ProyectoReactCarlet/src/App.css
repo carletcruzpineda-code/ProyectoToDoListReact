@@ -77,3 +77,30 @@
   text-decoration: underline;
   text-shadow: 0 0 8px #1a237e;
 }
+
+/* Clase move para alinear contenido al lado derecho */
+.move {
+  text-align: right;
+}
+
+/* Estilo general del contenedor personalizado */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 3rem;
+  background-color: #fff8e1; /* Amarillo suave */
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(255, 214, 0, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #4e342e; /* Marrón oscuro */
+  text-align: center;
+  line-height: 1.8;
+  transition: all 0.3s ease;
+}
+
+/* Diferenciar más con hover */
+.container:hover {
+  box-shadow: 0 12px 40px rgba(255, 214, 0, 0.4);
+  transform: scale(1.02);
+}
+

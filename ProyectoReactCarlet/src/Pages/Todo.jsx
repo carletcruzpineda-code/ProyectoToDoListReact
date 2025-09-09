@@ -3,12 +3,15 @@ import NavBar from '../Components/NavBar'
 import TaskList from '../Components/TaskList'
   
 
-function Todo() {
+function Todo() { 
   return (
     <div>
-      <NavBar/>
-      <h1>Lista de Tareas</h1>
+      <div className='container'><NavBar/></div>
+      <div>
+         <h1 className='mover'>Lista de Tareas</h1>
       <TaskList/>
+      </div>
+     
     </div>
   )
 }
