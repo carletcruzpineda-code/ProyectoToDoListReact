@@ -1,7 +1,7 @@
 /* Obtener todas las tareas */
 export async function getT() {
     try {
-        const response = await fetch('http://localhost:3001/Tareas', {
+        const response = await fetch('http://localhost:3001/tareas', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ export async function getT() {
 /* Eliminar tarea x id */
 export async function agregarT(tarea) {
     try {
-        const response = await fetch('http://localhost:3001/Tareas', {
+        const response = await fetch('http://localhost:3001/tareas', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ export async function agregarT(tarea) {
 /*  Eliminar tarea x por id */
 export async function eliminarT(id) {
     try {
-        await fetch(`http://localhost:3001/Tareas/${id}`, {
+        await fetch(`http://localhost:3001/tareas/${id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         });
@@ -49,7 +49,7 @@ export async function eliminarT(id) {
 /* Actualizar tarea */
 export async function actualizarT(tarea) {
     try {
-        const response = await fetch(`http://localhost:3001/tareas/${Tareas.id}`, {
+        const response = await fetch(`http://localhost:3001/tareas/${tarea.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

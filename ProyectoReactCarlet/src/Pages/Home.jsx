@@ -6,7 +6,7 @@ function Home() {
         <div>
             <NavBar/>
             <h1>Bienvenido</h1>
-            <p>Registro de tus Tareas </p>
+            <p>Registro de Tareas </p>
         </div>
         
     )

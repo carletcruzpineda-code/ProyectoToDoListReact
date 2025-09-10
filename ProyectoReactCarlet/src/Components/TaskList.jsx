@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getT, agregarT, eliminarT, actualizarT } from '../Services/Services'
 
+
 function TaskList() {
   const [tareas, setTareas] = useState([])
   const [nuevaT, setNuevaT] = useState('')
@@ -41,7 +42,7 @@ function TaskList() {
   const Complete = async (tarea) => {
     try {
       await actualizarT({ ...tarea, completada: !tarea.completada })
-      cargarTareas()
+      cargarT()
     } catch (error) {
       console.error("Error al actualizar tarea:", error)
     }
@@ -55,6 +56,7 @@ function TaskList() {
           placeholder="Ingresar tarea"
           value={nuevaT}
           onChange={e => setNuevaT(e.target.value)}
+          onKeyDown={(e) => { if(e.key === "Enter")agregarNuevaT() }}
         />
         <button onClick={agregarNuevaT}>Agregar</button>
       </div>
