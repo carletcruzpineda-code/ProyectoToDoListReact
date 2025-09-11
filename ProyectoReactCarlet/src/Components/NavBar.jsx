@@ -6,9 +6,9 @@ function NavBar() {
   return (
     <motion.div
       className="move"
-      initial={{ y: -50, opacity: 0 }} // Posición inicial arriba, oculto
-      animate={{ y: 0, opacity: 1 }}   // Anima a posición normal, visible
-      transition={{ duration: 0.6, ease: "easeOut" }} // Duración y estilo
+      initial={{ y: -50, opacity: 0 }} 
+      animate={{ y: 0, opacity: 1 }}  
+      transition={{ duration: 0.6, ease: "easeOut" }} 
     >
       <h2>To Do List React</h2>
       <nav>

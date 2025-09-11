@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import { getT, agregarT, eliminarT, actualizarT } from '../Services/Services'
+import React, { useState, useEffect } from 'react' /* hooks */
+import { getT, agregarT, eliminarT, actualizarT } from '../Services/Services'/* conecto con el backend (API/json-server). */
 
 
 function TaskList() {
-  const [tareas, setTareas] = useState([])
-  const [nuevaT, setNuevaT] = useState('')
+  const [tareas, setTareas] = useState([]) /* Guarda tareas que traes del backend */
+  const [nuevaT, setNuevaT] = useState('') /* guarda Texto del input */
+  const [modoEdicion, setModoEdicion] =useState(false) /* controla true or false */
+  const [tareaActual,setTareaActual] = useState(null) /* Guarda la tarea que quieres editar */
 
-  useEffect(() => {
+  /* Función cargarT */
+  useEffect(() => { /* se ejecute cargarT y traiga todas las tareas de BaseDatos */
     cargarT()
-  }, [])
+  }, []) /* arreglo dependencias Se ejecuta una vez se segura q lista no este vacía cuando usuario entra la pagina*/
 
-  const cargarT = async () => {
+
+  const cargarT = async () => { /* llama al servicio get() recibe las tareas y guarda en tareas*/
     try {
       const lista = await getT()
       setTareas(lista)
@@ -19,10 +23,10 @@ function TaskList() {
     }
   }
 
-  const agregarNuevaT = async () => {
-    if (!nuevaT.trim()) return
+  const agregarNuevaT = async () => {/* si el input esta vacion no hace nada */
+    if (!nuevaT.trim()) return 
     try {
-      await agregarT({ titulo: nuevaT, completada: false })
+      await agregarT({ titulo: nuevaT, completada: false })/* si tiene texto,crea una nueva tarea con esto */
       setNuevaT('')
       cargarT()
     } catch (error) {
@@ -30,7 +34,7 @@ function TaskList() {
     }
   }
 
-  const borrarT = async (id) => {
+  const borrarT = async (id) => {/* Borra x id y actualiz lista */
     try {
       await eliminarT(id)
       cargarT()
@@ -39,7 +43,7 @@ function TaskList() {
     }
   }
 
-  const Complete = async (tarea) => {
+  const Complete = async (tarea) => {/* Marca tarea como completada o no invierte el estado y actualiza lista */
     try {
       await actualizarT({ ...tarea, completada: !tarea.completada })
       cargarT()
@@ -48,24 +52,68 @@ function TaskList() {
     }
   }
 
-  return (
+  /* Iniciar edición */
+  const editarTarea =(tarea) => {
+  setModoEdicion(true)/* Entra */
+  setTareaActual(tarea)/* Guarda */
+  setNuevaT(tarea.titulo)/* carga texto en el input */
+  }
+
+
+/* Enviar cambios de edicion */
+  const enviarEdicion = async () => {
+  if (!nuevaT.trim()) return   // No permitir editar a texto vacío
+
+  try {
+    await actualizarT({ ...tareaActual, titulo: nuevaT })/* Actualiza tarea con nuevo titulo */
+    setModoEdicion(false)     /* sale modo edicion */
+    setTareaActual(null)      /* Limpia la tarea que estaba siendo editada, eliminando la referencia a tareaActual. */
+    setNuevaT('')              /* limpia el input */
+    cargarT()                   /* recarga lista de tareas */
+  } catch (error) {
+    console.error("Error al editar tarea:", error)
+  }
+}
+
+/* Inputs y botones para agregar o editar */
+ return (
     <div>
       <div>
         <input
           type="text"
           placeholder="Ingresar tarea"
-          value={nuevaT}
-          onChange={e => setNuevaT(e.target.value)}
-          onKeyDown={(e) => { if(e.key === "Enter")agregarNuevaT() }}
+          value={nuevaT} /* contenido del input viene del estado nuevaT */
+          onChange={e => setNuevaT(e.target.value)}/* cada q escribo se actualiza nuevaT */
+          onKeyDown={e => {
+            if (e.key === "Enter") {/*si estan  modoedicion se llama enviarEdicion, sino agregarNuevaT*/
+              modoEdicion ? enviarEdicion() : agregarNuevaT()
+            }
+          }}
         />
-        <button onClick={agregarNuevaT}>Agregar</button>
+
+        {modoEdicion ? (/* Agregar, Actualizar, Cancelar */
+          <>
+            <button onClick={enviarEdicion}>Actualizar</button>
+            <button
+              onClick={() => {
+                setModoEdicion(false)
+                setTareaActual(null)
+                setNuevaT('')
+              }}
+            >
+              Cancelar
+            </button>
+          </>
+        ) : (
+          <button onClick={agregarNuevaT}>Agregar</button>
+        )}
       </div>
 
       <div>
         <p>Tareas Completadas: {tareas.filter(t => t.completada).length}</p>
       </div>
 
-      <div>
+      <div> {/* Mostrar lista con opciones */}
         {tareas.map(t => (
           <div key={t.id}>
             <input
@@ -74,6 +122,7 @@ function TaskList() {
               onChange={() => Complete(t)}
             />
             <span>{t.titulo}</span>
+            <button onClick={() => editarTarea(t)}>Editar</button>
             <button onClick={() => borrarT(t.id)}>Eliminar</button>
           </div>
         ))}
@@ -83,3 +132,5 @@ function TaskList() {
 }
 
 export default TaskList
+
+
