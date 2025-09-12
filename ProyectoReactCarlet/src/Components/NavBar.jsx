@@ -1,8 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 function NavBar() {
+  const navigate =useNavigate();
+  
+  const cerrarS = () => {
+    sessionStorage.clear();
+    navigate("/login");
+    }
   return (
     <motion.div
       className="move"
@@ -12,11 +18,10 @@ function NavBar() {
     >
       <h2>To Do List React</h2>
       <nav>
-        <Link to="/">Inicio</Link> | 
-        <Link to="/Todo"> Tareas</Link>
+        <Link to="/">Inicio</Link> | <Link to="/Todo">Tareas</Link> |{" "}
+        <button onClick={cerrarS }>Cerrar sesión</button>
       </nav>
     </motion.div>
   );
 }
-
-export default NavBar;
+ export default NavBar; 

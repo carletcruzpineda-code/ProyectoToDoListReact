@@ -62,3 +62,38 @@ export async function actualizarT(tarea) {
         throw error;
     }
 }
+
+/* Obtener nuevo usuario */
+export async function getUsuario(usuario, clave) {
+  try {
+    const response = await fetch('http://localhost:3001/usuarios?usuario=' + usuario + '&clave=' + clave, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return await response.json(); // Devuelve un array
+  } catch (error) {
+    console.error("Error al obtener usuario:", error);
+    throw error;
+  }
+}
+
+/* Obtener Usuario por Nombre y Clave */
+
+export async function agregarUsuario(usuarioObj) {
+  try {
+    const response = await fetch('http://localhost:3001/usuarios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(usuarioObj)
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Error al registrar usuario:", error);
+    throw error;
+  }
+}
+
