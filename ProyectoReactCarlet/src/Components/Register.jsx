@@ -38,7 +38,7 @@ function Register() {
     }
   };
 
-}
+
 
   return (
    <div>
@@ -61,6 +61,6 @@ function Register() {
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
-}
 
-export default Register
+}
+export default Register   

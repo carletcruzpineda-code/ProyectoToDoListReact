@@ -26,7 +26,7 @@ function TaskList() {
   const agregarNuevaT = async () => {/* si el input esta vacion no hace nada */
     if (!nuevaT.trim()) return 
     try {
-      await agregarT({ titulo: nuevaT, completada: false })/* si tiene texto,crea una nueva tarea con esto */
+      await agregarT({ titulo: nuevaT, completada: false , fecha:  new Date().toISOString().slice(0,10)})/* si tiene texto,crea una nueva tarea con esto */
       setNuevaT('')
       cargarT()
     } catch (error) {
@@ -121,7 +121,9 @@ function TaskList() {
               checked={t.completada}
               onChange={() => Complete(t)}
             />
-            <span>{t.titulo}</span>
+            <span>Tarea: {t.titulo}|       </span>
+            
+            <span>Fecha:{t.fecha} </span>
             <button onClick={() => editarTarea(t)}>Editar</button>
             <button onClick={() => borrarT(t.id)}>Eliminar</button>
           </div>
@@ -132,5 +134,3 @@ function TaskList() {
 }
 
 export default TaskList
-
-

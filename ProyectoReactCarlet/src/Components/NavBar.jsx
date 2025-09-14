@@ -18,8 +18,8 @@ function NavBar() {
     >
       <h2>To Do List React</h2>
       <nav>
-        <Link to="/">Inicio</Link> | <Link to="/Todo">Tareas</Link> |{" "}
-        <button onClick={cerrarS }>Cerrar sesión</button>
+        <Link to="/" onClick={cerrarS}>LogOut</Link> | <Link to="/Todo">Tareas</Link> |{" "}
+        
       </nav>
     </motion.div>
   );
