@@ -20,7 +20,7 @@ function Log() {
             /*     sessionStorage.setItem("auth", "true"); */
                 sessionStorage.setItem("usuarioActivo", usuario);
                 setError("");
-                navigate("/Todo"); // redirigir a lista de tareas
+                navigate("/Home");
             } 
             else {
                 setError("Usuario o contraseña incorrectos");
