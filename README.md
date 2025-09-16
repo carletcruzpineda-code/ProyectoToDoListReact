@@ -5,7 +5,7 @@ Tecnologías y Librerías
 Debe Clonar el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repo.git
+git clone https://github.com/carletcruzpineda-code/ProyectoToDoListReact.git
 cd tu-repo
 
 Instalar dependencias:
