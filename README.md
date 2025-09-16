@@ -22,12 +22,12 @@ npx json-server --watch db.json --port 3001
 1. Descripción general 
 
 -Tiene Registro de usuario con validación y verificación de usuarios existentes.
-- Inicio de sesión** validando usuario y contraseña.
-- Sesión activa** guardada en `sessionStorage` para control de acceso.
-- Rutas protegidas** para que solo usuarios autenticados puedan acceder a `/Home` y `/Todo`.
+- Inicio de sesión validando usuario y contraseña.
+- Sesión activa guardada en `sessionStorage` para control de acceso.
+- Rutas protegidas para que solo usuarios autenticados puedan acceder a `/Home` y `/Todo`.
 - CRUD completo de tareas: agregar, editar, eliminar, marcar completadas.
-- Animaciones suaves** usando Framer Motion en transiciones y elementos UI.
-- Barra de navegación** con opción de cerrar sesión (limpia sesión y redirige a login).
+- Animaciones suaves usando Framer Motion en transiciones y elementos UI.
+- Barra de navegación con opción de cerrar sesión (limpia sesión y redirige a login).
 
 2.Descripción de Componentes y paginas
 Log.jsx
